@@ -21,6 +21,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-     - name: Build and run tests
+      - name: Build and run tests
         working-directory: ./userService
         run: mvn clean verify
