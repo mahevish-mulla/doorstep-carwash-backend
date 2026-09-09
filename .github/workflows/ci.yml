@@ -7,9 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
+  build-user-service:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,6 +20,23 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build and run tests
+      - name: Build and test User Service
         working-directory: ./userService
+        run: mvn clean verify
+
+  build-booking-service:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build and test Booking Service
+        working-directory: ./bookingService
         run: mvn clean verify
